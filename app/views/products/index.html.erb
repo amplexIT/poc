@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Products</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Barcode</th>
+      <th>Location</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.name %></td>
+        <td><%= product.description %></td>
+        <td><%= product.barcode %>
+          <%= link_to show_barcode_product_path(product), class: 'btn btn-info btn-xs' do %>
+              <i class="glyphicon glyphicon-barcode"></i>
+          <% end %>
+        </td>
+        <td><%= product.location %></td>
+        <td><%= link_to product, class: 'btn btn-primary btn-xs' do %>
+              <i class="glyphicon glyphicon-zoom-in"></i>
+            <% end %>
+        </td>
+        <td><%= link_to edit_product_path(product), class: 'btn btn-info btn-xs' do %>
+              <i class="glyphicon glyphicon-pencil"></i>
+            <% end %>
+        </td>
+        <td><%= link_to product, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' do %>
+              <i class="glyphicon glyphicon-trash"></i>
+            <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to new_product_path, class: 'btn btn-success' do %>
+    <i class="glyphicon glyphicon-plus"></i> New Product
+<% end %>
